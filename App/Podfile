@@ -1,0 +1,62 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+workspace 'App.xcworkspace'
+project 'App.xcodeproj'
+platform :ios, '10.0'
+inhibit_all_warnings!
+use_frameworks!
+
+CCPod = Struct.new(:name, :version, :git, :branch)
+snapkit = CCPod.new('SnapKit', '~> 4.0.0')
+alamofire = CCPod.new('Alamofire', '~> 4.6')
+skyFloatingLabelTextField = CCPod.new('SkyFloatingLabelTextField', '~> 3.0')
+
+#Every pod that is used in the framework must be
+#included in the main app as framework does not copy pods to target,
+#so you would end up with dyld: library not loaded
+["App", "AppTests"].each do |targetName|
+  target targetName do
+    inherit! :search_paths
+	
+    pod snapkit.name, snapkit.version
+	pod skyFloatingLabelTextField.name, skyFloatingLabelTextField.version
+	pod alamofire.name, alamofire.version
+  end
+end
+
+def project_path(projectName)
+  return "../#{projectName}/#{projectName}"
+end
+
+target 'CCCore' do
+  project project_path("CCCore")
+
+  pod alamofire.name, alamofire.version
+end
+
+target 'CCComponents' do
+	project project_path("CCComponents")
+	
+	pod snapkit.name, snapkit.version
+end
+
+target 'CCFeature0' do
+	project project_path("CCFeature0")
+	
+	pod skyFloatingLabelTextField.name, skyFloatingLabelTextField.version
+	pod snapkit.name, snapkit.version
+end
+
+target 'CCFeature1' do
+	project project_path("CCFeature1")
+	
+	pod skyFloatingLabelTextField.name, skyFloatingLabelTextField.version
+	pod snapkit.name, snapkit.version
+end
+
+target 'CCFeature2' do
+	project project_path("CCFeature2")
+	
+	pod snapkit.name, snapkit.version
+end

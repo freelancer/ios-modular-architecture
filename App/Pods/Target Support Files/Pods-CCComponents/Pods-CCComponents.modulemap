@@ -1,0 +1,6 @@
+framework module Pods_CCComponents {
+  umbrella header "Pods-CCComponents-umbrella.h"
+
+  export *
+  module * { export * }
+}
