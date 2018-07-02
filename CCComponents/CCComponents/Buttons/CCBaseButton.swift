@@ -1,5 +1,5 @@
 //
-//  CCBaseButton().swift
+//  CCBaseButton.swift
 //  CCComponents
 //
 //  Created by Cyril Cermak on 5/3/18.

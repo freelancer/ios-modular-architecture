@@ -13,13 +13,11 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-
 protocol MainVCDelegate: class {
 	func presentCCFeature0()
 	func pushCCFeature1()
 	func pushCCFeature2()
 }
-
 
 class MainVC: CCBaseVC {
 	

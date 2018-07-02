@@ -11,8 +11,8 @@ import Foundation
 /**
 	Every child flow must implement Flow protocol
 	- func start: Starts the flow process, it usually decides what is going to be presented
-	- var services: Property that contains all the services that are used in the app
-	- var finish: Is a closure that notifies about parent Flow that this flow is finished.
+	- var services: Property that contains all the services that are used in the app or the current flow
+	- var finish: Is a closure that notifies parent Flow that this flow is finished.
 	- var currentVC: Returns view controller that is currently being displayed
 */
 public protocol Flow {

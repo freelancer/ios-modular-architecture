@@ -9,7 +9,6 @@
 import UIKit
 import CCCore
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var flow: AppFlow!
@@ -18,9 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		initFlowAndServices()
 	
-		if let documentsPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
-			print(documentsPathString)
-		}
 		return true
 	}
 	

@@ -16,7 +16,6 @@ class MainView: UIView {
 	let feature1Btn = CCBaseButton(frame: CGRect.zero)
 	let feature2Btn = CCBaseButton(frame: CGRect.zero)
 	
-	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		initView()
@@ -35,7 +34,6 @@ class MainView: UIView {
 		for btn in [feature0Btn, feature1Btn, feature2Btn] {
 			btn.setTitleColor(.red, for: .normal)
 			stackView.addArrangedSubview(btn)
-			
 		}
 		
 		self.addSubview(stackView)

@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-/*
+/**
 	This is the order of how the frameworks are being compiled.
 	It starts with CCCore but if CCCore contains other imported framework
 	then the compiler jumps to that framework.
@@ -21,9 +21,7 @@ import CCFeature2
 
 /**
 	Init of the flow takes two params:
-
 	@param services: An object that contains reference to all the services that are used in the app
-
 	@param navigationVC: Main UINavigationVC who is then passed to a childFlows
 */
 class AppFlow: Flow {
