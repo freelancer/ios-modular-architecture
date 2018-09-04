@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.flow = AppFlow(services: services)
 		flow.start()
 		self.window = UIWindow()
-		self.window?.rootViewController = flow.rootNavigation
+		self.window?.rootViewController = flow.navigation
 		self.window?.makeKeyAndVisible()
 	}
 	

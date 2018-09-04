@@ -14,9 +14,6 @@ public class CCFeature1Flow: Flow, MainF1VCDelegate {
 	public var finish: (Flow) -> () = { _ in }
 	public var services: Services
 	public var navigation: UINavigationController?
-	public var currentVC: UIViewController? {
-		return navigation?.viewControllers.last
-	}
 	
 	public required init(services: Services, navigationVC: UINavigationController?) {
 		self.services = services

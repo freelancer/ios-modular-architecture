@@ -9,14 +9,11 @@
 import Foundation
 import CCCore
 
-public class CCFeature2Flow: Flow, MainF2VCDelegate {
+public class CCFeature2Flow: Flow {
 	
 	public var finish: (Flow) -> () = { _ in }
 	public var services: Services
 	public var navigation: UINavigationController?
-	public var currentVC: UIViewController? {
-		return navigation?.viewControllers.last
-	}
 	
 	public required init(services: Services, navigationVC: UINavigationController?) {
 		self.services = services
@@ -32,7 +29,9 @@ public class CCFeature2Flow: Flow, MainF2VCDelegate {
 		vc.delegate = self
 		self.navigation?.pushViewController(vc, animated: true)
 	}
-	
+}
+
+extension CCFeature2Flow: MainF2VCDelegate {
 	func wantsToGoBack(at vc: MainF2VC) {
 		finish(self)
 	}

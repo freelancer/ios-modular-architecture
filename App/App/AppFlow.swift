@@ -17,8 +17,6 @@ import CCCore
 import CCFeature0
 import CCFeature1
 import CCFeature2
-
-
 /**
 	Init of the flow takes two params:
 	@param services: An object that contains reference to all the services that are used in the app
@@ -28,51 +26,56 @@ class AppFlow: Flow {
 	
 	var services: Services
 	var childFlows: [Flow] = [Flow]()
-	public var finish: (Flow) -> () = { _ in }
-	var rootNavigation: UINavigationController!
-	
-	
-	public var currentVC: UIViewController? {
-		return rootNavigation.viewControllers.last 
-	}
+	var navigation: UINavigationController?
+	var finish: (Flow) -> () = { _ in }
 	
 	required init(services: Services, navigationVC: UINavigationController? = nil) {
 		self.services = services
-		self.finish = { _ in }
 	}
 	
 	public func start() {
-		self.presentMain()
+		self.presentMainVC()
 	}
 	
-	private func presentMain() {
+	private func presentMainVC() {
 		let mainVC = MainVC(services: self.services)
 		mainVC.delegate = self
-		self.rootNavigation = UINavigationController(rootViewController: mainVC)
+		self.navigation = UINavigationController(rootViewController: mainVC)
 	}
 	
 }
 
 extension AppFlow: MainVCDelegate {
 	func presentCCFeature0() {
-		let flow = CCFeature0Flow(services: self.services, navigationVC: self.rootNavigation)
-		flow.start()
-		self.childFlows.append(flow)
-		flow.finish = { flow in _ = self.childFlows.popLast() }
+		let feature0Flow = CCFeature0Flow(services: self.services, navigationVC: self.navigation)
+		feature0Flow.finish = { flow in
+			_ = self.childFlows.popLast()
+			print("poped CCFeature0Flow)")
+		}
+		startNew(flow: feature0Flow)
 	}
 	
 	func pushCCFeature1() {
-		let flow = CCFeature1Flow(services: self.services, navigationVC: self.rootNavigation)
-		flow.start()
-		self.childFlows.append(flow)
-		flow.finish = { flow in _ = self.childFlows.popLast() }
+		let feature1Flow = CCFeature1Flow(services: self.services, navigationVC: self.navigation)
+		feature1Flow.finish = { flow in
+			_ = self.childFlows.popLast()
+			print("poped CCFeature1Flow)")
+		}
+		startNew(flow: feature1Flow)
 	}
 	
 	func pushCCFeature2() {
-		let flow = CCFeature2Flow(services: self.services, navigationVC: self.rootNavigation)
+		let feature2Flow = CCFeature2Flow(services: self.services, navigationVC: self.navigation)
+		feature2Flow.finish = { flow in
+			_ = self.childFlows.popLast()
+			print("poped CCFeature2Flow)")
+		}
+		startNew(flow: feature2Flow)
+	}
+	
+	private func startNew(flow: Flow) {
 		flow.start()
 		self.childFlows.append(flow)
-		flow.finish = { flow in _ = self.childFlows.popLast() }
 	}
 	
 }
